@@ -1,0 +1,27 @@
+@use '../../scss/variables' as *;
+
+.card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    0 4px 24px -1px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255,255,255,0.8);
+
+  /* Padding Options */
+  &--p-none { padding: 0; }
+  &--p-sm { padding: 1rem; }
+  &--p-md { padding: 1.5rem; }
+  &--p-lg { padding: 2.5rem; }
+
+  /* Shadow Options */
+  &--shadow-none { box-shadow: none; }
+  &--shadow-sm { box-shadow: var(--shadow-sm); }
+  &--shadow-md { box-shadow: var(--shadow-md); }
+  &--shadow-lg { box-shadow: var(--shadow-lg); }
+}

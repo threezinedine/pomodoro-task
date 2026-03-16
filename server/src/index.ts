@@ -7,6 +7,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+import cookieParser from 'cookie-parser';
+import authRoutes from './routes/auth.routes';
+
 // Middleware
 const allowedOriginsStr = process.env.ALLOWED_ORIGINS || '';
 const allowedOrigins = allowedOriginsStr.split(',').map(origin => origin.trim()).filter(Boolean);
@@ -18,9 +21,14 @@ app.use(cors({
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  credentials: true // Crucial for sending/receiving cookies via CORS
 }));
 app.use(express.json());
+app.use(cookieParser());
+
+// Routes
+app.use('/api/auth', authRoutes);
 
 // Basic test route
 app.get('/api/health', (req: Request, res: Response) => {

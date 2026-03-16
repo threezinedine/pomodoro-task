@@ -1,0 +1,41 @@
+// Global CSS variables (Dark Theme Default)
+:root {
+  /* Brand Colors - Lighter, more vibrant Indigo/Violet */
+  --color-primary-light: #a5b4fc;
+  --color-primary: #818cf8;        /* Lighter primary */
+  --color-primary-hover: #6366f1;  /* Darker on hover */
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  
+  /* Surfaces */
+  --color-surface: #1f2937;
+  --color-surface-hover: #374151;
+  --color-background: #111827;
+  --color-border: #374151;
+  
+  /* Text */
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #6b7280;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+}
+
+// Light mode overriding (Optional)
+@media (prefers-color-scheme: light) {
+  :root[data-theme="light"] {
+    --color-surface: #ffffff;
+    --color-surface-hover: #f9fafb;
+    --color-background: #f3f4f6;
+    --color-border: #e5e7eb;
+    
+    --color-text-primary: #111827;
+    --color-text-secondary: #4b5563;
+    --color-text-muted: #9ca3af;
+  }
+}

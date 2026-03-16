@@ -1,0 +1,123 @@
+@use '../../scss/variables' as *;
+
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  pointer-events: none; /* Allows clicks to pass through empty space */
+}
+
+.toast-message {
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto; /* Re-enable clicks on the actual toast */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  color: var(--color-text-primary);
+  transform-origin: center right;
+  min-width: 300px;
+  max-width: 400px;
+
+  &__content {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border-radius: 6px;
+    margin-left: 0.5rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--color-text-primary);
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    animation: progressShrink linear forwards;
+    transform-origin: left;
+  }
+
+  /* Variants Setup */
+  &--success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    .toast-icon--success { color: #34d399; }
+    .toast-message__progress { background-color: rgba(16, 185, 129, 0.8); }
+  }
+
+  &--error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    .toast-icon--error { color: #f87171; }
+    .toast-message__progress { background-color: rgba(239, 68, 68, 0.8); }
+  }
+
+  &--info {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    .toast-icon--info { color: #60a5fa; }
+    .toast-message__progress { background-color: rgba(59, 130, 246, 0.8); }
+  }
+
+  &--warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    .toast-icon--warning { color: #fbbf24; }
+    .toast-message__progress { background-color: rgba(245, 158, 11, 0.8); }
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progressShrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
